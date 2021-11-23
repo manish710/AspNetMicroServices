@@ -1,0 +1,18 @@
+--- Mongo DB commands
+To start mongo type and press enter
+	mongo
+
+To Show Database
+	show dbs
+
+To create Database
+	show dbs
+	
+To create Table :- Here Table is called as Collection and records in table called Document in Mongo	
+	db.createCollection('Products')
+	
+
+
+To Insert record into Product Table
+	db.Products.insertMany([{"Name": "Asus Laptop","Category": "Computer","Summary":"Summary","Description":"Description","ImageFile":"ImageFile","Price":54.93},
+							{"Name": "HP Laptop","Category": "Computer","Summary":"Summary","Description":"Description","ImageFile":"ImageFile","Price":88.93d}])
