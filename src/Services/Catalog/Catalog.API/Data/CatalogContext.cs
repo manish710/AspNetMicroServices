@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Catalog.API.Data
 {
-    public class CatalogContext
+    public class CatalogContext : ICatalogContext
     {
         public CatalogContext(IConfiguration configuration)
         {
@@ -18,10 +18,9 @@ namespace Catalog.API.Data
             Products = database.GetCollection<Product>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
             CatalogContextSeed.SeedData(Products);
         }
-    
-        public IMongoCollection<Product> Products { get; }
 
+        public IMongoCollection<Product> Products { get; }
     }
 
-    
+
 }
