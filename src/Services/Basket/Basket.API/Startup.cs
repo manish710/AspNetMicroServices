@@ -4,6 +4,7 @@
 //using Discount.Grpc.Protos;
 //using HealthChecks.UI.Client;
 //using MassTransit;
+using Basket.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +41,7 @@ namespace Basket.API
             });
 
             // General Configuration
-            //services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped<IBasketRepository, BasketRepository>();
             //services.AddAutoMapper(typeof(Startup));
 
             //// Grpc Configuration
