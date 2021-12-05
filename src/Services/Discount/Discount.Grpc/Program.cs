@@ -1,30 +1,25 @@
 using Discount.Grpc.Extentions;
-using Discount.Grpc.Repositories;
-using GrpcService1.Services;
-//using Discount.Grpc.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Additional configuration is required to successfully run gRPC on macOS.
-// For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
-
-// Add services to the container.
-builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
-//builder.Services.AddAutoMapper();
-builder.Services.AddGrpc();
-
-var app = builder.Build();
-
-if (builder.Environment.IsDevelopment())
+namespace Discount.Grpc
 {
-    app.UseDeveloperExceptionPage();
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = CreateHostBuilder(args).Build();
+            host.MigrateDatabase<Program>();
+            host.Run();
+        }
+
+        // Additional configuration is required to successfully run gRPC on macOS.
+        // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
 }
-
-app.UseRouting();
-
-// Configure the HTTP request pipeline.
-app.MapGrpcService<DiscountService>();
-app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-
-app.MigrateDatabase<Program>();
-app.Run();

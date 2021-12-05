@@ -3,10 +3,13 @@ using Discount.Grpc.Entities;
 using Discount.Grpc.Protos;
 using Discount.Grpc.Repositories;
 using Grpc.Core;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
-namespace GrpcService1.Services
+namespace Discount.Grpc.Services
 {
-    public class DiscountService : DiscountProtoService.DiscountProtoServiceBase  
+    public class DiscountService : DiscountProtoService.DiscountProtoServiceBase
     {
         private readonly IDiscountRepository _repository;
         private readonly IMapper _mapper;
