@@ -16,3 +16,5 @@ To create Table :- Here Table is called as Collection and records in table calle
 To Insert record into Product Table
 	db.Products.insertMany([{"Name": "Asus Laptop","Category": "Computer","Summary":"Summary","Description":"Description","ImageFile":"ImageFile","Price":54.93},
 							{"Name": "HP Laptop","Category": "Computer","Summary":"Summary","Description":"Description","ImageFile":"ImageFile","Price":88.93d}])
+
+
